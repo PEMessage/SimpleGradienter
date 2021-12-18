@@ -1,9 +1,9 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/18/2021  23:37:10  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/19/2021  01:24:21  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
-C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\main.obj, .\Objects\mpu6050.obj TO .\Objects\MPU6050_51 PRI
->> NT (.\Listings\MPU6050_51.m51) RAMSIZE (256)
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\main.obj, .\Objects\mpu6050.obj, .\Objects\digtube.obj TO .
+>> \Objects\MPU6050_51 PRINT (.\Listings\MPU6050_51.m51) RAMSIZE (256)
 
 
 MEMORY MODEL: SMALL
@@ -13,6 +13,10 @@ INPUT MODULES INCLUDED:
   .\Objects\STARTUP.obj (?C_STARTUP)
   .\Objects\main.obj (MAIN)
   .\Objects\mpu6050.obj (MPU6050)
+  .\Objects\digtube.obj (DIGTUBE)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?SIDIV)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?UIDIV)
 
 
 LINK MAP OF MODULE:  .\Objects\MPU6050_51 (?C_STARTUP)
@@ -23,47 +27,55 @@ LINK MAP OF MODULE:  .\Objects\MPU6050_51 (?C_STARTUP)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            DATA    0008H     0006H     UNIT         ?DT?MPU6050
-                    000EH     0012H                  *** GAP ***
-            BIT     0020H.0   0000H.1   UNIT         _BIT_GROUP_
+            DATA    0008H     0016H     UNIT         ?DT?DIGTUBE
+            DATA    001EH     0002H     UNIT         _DATA_GROUP_
+            BIT     0020H.0   0000H.1   UNIT         ?BI?I2C_SENDACK?MPU6050
                     0020H.1   0000H.7                *** GAP ***
-            IDATA   0021H     0001H     UNIT         ?STACK
+            DATA    0021H     0006H     UNIT         ?DT?MPU6050
+            IDATA   0027H     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
-            CODE    0003H     0027H     UNIT         ?PR?I2C_RECVBYTE?MPU6050
-            CODE    002AH     0023H     UNIT         ?PR?_GETDATA?MPU6050
-            CODE    004DH     0022H     UNIT         ?PR?_I2C_SENDBYTE?MPU6050
-            CODE    006FH     0022H     UNIT         ?PR?_SINGLE_READI2C?MPU6050
-            CODE    0091H     0022H     UNIT         ?PR?INITMPU6050?MPU6050
-            CODE    00B3H     0020H     UNIT         ?PR?_DELAY?MPU6050
-            CODE    00D3H     001FH     UNIT         ?PR?MAIN?MAIN
-            CODE    00F2H     0017H     UNIT         ?PR?_SINGLE_WRITEI2C?MPU6050
-            CODE    0109H     000FH     UNIT         ?PR?I2C_START?MPU6050
-            CODE    0118H     000EH     UNIT         ?PR?I2C_SENDACK?MPU6050
-            CODE    0126H     000CH     UNIT         ?C_C51STARTUP
-            CODE    0132H     000CH     UNIT         ?PR?I2C_STOP?MPU6050
-            CODE    013EH     000CH     UNIT         ?PR?I2C_RECVACK?MPU6050
-            CODE    014AH     0002H     UNIT         ?PR?DELAY5US?MPU6050
+            CODE    0003H     008CH     UNIT         ?C_C51STARTUP
+            CODE    008FH     008BH     UNIT         ?C?LIB_CODE
+            CODE    011AH     005EH     UNIT         ?PR?_DIGTUBE_LOADNUM?DIGTUBE
+            CODE    0178H     0041H     UNIT         ?PR?DIGTUBE_DISPLAY?DIGTUBE
+            CODE    01B9H     0027H     UNIT         ?PR?I2C_RECVBYTE?MPU6050
+            CODE    01E0H     0023H     UNIT         ?PR?MAIN?MAIN
+            CODE    0203H     0023H     UNIT         ?PR?_GETDATA?MPU6050
+            CODE    0226H     0022H     UNIT         ?PR?_I2C_SENDBYTE?MPU6050
+            CODE    0248H     0022H     UNIT         ?PR?_SINGLE_READI2C?MPU6050
+            CODE    026AH     0022H     UNIT         ?PR?INITMPU6050?MPU6050
+            CODE    028CH     0020H     UNIT         ?PR?_DELAY?MPU6050
+            CODE    02ACH     001DH     UNIT         ?C_INITSEG
+            CODE    02C9H     0017H     UNIT         ?PR?_SINGLE_WRITEI2C?MPU6050
+            CODE    02E0H     000FH     UNIT         ?PR?I2C_START?MPU6050
+            CODE    02EFH     000EH     UNIT         ?PR?I2C_SENDACK?MPU6050
+            CODE    02FDH     000CH     UNIT         ?PR?I2C_STOP?MPU6050
+            CODE    0309H     000CH     UNIT         ?PR?I2C_RECVACK?MPU6050
+            CODE    0315H     000BH     UNIT         ?PR?_DELAY_DIG?DIGTUBE
+            CODE    0320H     0002H     UNIT         ?PR?DELAY5US?MPU6050
 
 
 
 OVERLAY MAP OF MODULE:   .\Objects\MPU6050_51 (?C_STARTUP)
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/19/2021  01:24:21  PAGE 2
 
 
-SEGMENT                                 BIT_GROUP 
+
+
+SEGMENT                                DATA_GROUP 
   +--> CALLED SEGMENT                START    LENGTH
 ----------------------------------------------------
 ?C_C51STARTUP                        -----    -----
   +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
 
-?PR?MAIN?MAIN                        -----    -----
+?PR?MAIN?MAIN                        001EH    0002H
   +--> ?PR?_DELAY?MPU6050
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/18/2021  23:37:10  PAGE 2
-
-
   +--> ?PR?INITMPU6050?MPU6050
-  +--> ?PR?_GETDATA?MPU6050
+  +--> ?PR?_DIGTUBE_LOADNUM?DIGTUBE
+  +--> ?PR?DIGTUBE_DISPLAY?DIGTUBE
 
 ?PR?INITMPU6050?MPU6050              -----    -----
   +--> ?PR?_SINGLE_WRITEI2C?MPU6050
@@ -86,21 +98,8 @@ SEGMENT                                 BIT_GROUP
 ?PR?I2C_STOP?MPU6050                 -----    -----
   +--> ?PR?DELAY5US?MPU6050
 
-?PR?_GETDATA?MPU6050                 -----    -----
-  +--> ?PR?_SINGLE_READI2C?MPU6050
-
-?PR?_SINGLE_READI2C?MPU6050          -----    -----
-  +--> ?PR?I2C_START?MPU6050
-  +--> ?PR?_I2C_SENDBYTE?MPU6050
-  +--> ?PR?I2C_RECVBYTE?MPU6050
-  +--> ?PR?I2C_SENDACK?MPU6050
-  +--> ?PR?I2C_STOP?MPU6050
-
-?PR?I2C_RECVBYTE?MPU6050             -----    -----
-  +--> ?PR?DELAY5US?MPU6050
-
-?PR?I2C_SENDACK?MPU6050              0020H.0  0000H.1
-  +--> ?PR?DELAY5US?MPU6050
+?PR?DIGTUBE_DISPLAY?DIGTUBE          -----    -----
+  +--> ?PR?_DELAY_DIG?DIGTUBE
 
 
 
@@ -110,8 +109,8 @@ SYMBOL TABLE OF MODULE:  .\Objects\MPU6050_51 (?C_STARTUP)
   ----------------------------------
 
   -------         MODULE        ?C_STARTUP
-  C:0126H         SEGMENT       ?C_C51STARTUP
-  I:0021H         SEGMENT       ?STACK
+  C:0003H         SEGMENT       ?C_C51STARTUP
+  I:0027H         SEGMENT       ?STACK
   C:0000H         PUBLIC        ?C_STARTUP
   D:00E0H         SYMBOL        ACC
   D:00F0H         SYMBOL        B
@@ -119,11 +118,11 @@ SYMBOL TABLE OF MODULE:  .\Objects\MPU6050_51 (?C_STARTUP)
   D:0082H         SYMBOL        DPL
   N:0000H         SYMBOL        IBPSTACK
   N:0100H         SYMBOL        IBPSTACKTOP
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/18/2021  23:37:10  PAGE 3
-
-
   N:0080H         SYMBOL        IDATALEN
-  C:0129H         SYMBOL        IDATALOOP
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/19/2021  01:24:21  PAGE 3
+
+
+  C:0006H         SYMBOL        IDATALOOP
   N:0000H         SYMBOL        PBPSTACK
   N:0100H         SYMBOL        PBPSTACKTOP
   N:0000H         SYMBOL        PDATALEN
@@ -132,18 +131,18 @@ SYMBOL TABLE OF MODULE:  .\Objects\MPU6050_51 (?C_STARTUP)
   N:0000H         SYMBOL        PPAGEENABLE
   D:00A0H         SYMBOL        PPAGE_SFR
   D:0081H         SYMBOL        SP
-  C:0126H         SYMBOL        STARTUP1
+  C:0003H         SYMBOL        STARTUP1
   N:0000H         SYMBOL        XBPSTACK
   N:0000H         SYMBOL        XBPSTACKTOP
   N:0000H         SYMBOL        XDATALEN
   N:0000H         SYMBOL        XDATASTART
   C:0000H         LINE#         126
-  C:0126H         LINE#         133
-  C:0128H         LINE#         134
-  C:0129H         LINE#         135
-  C:012AH         LINE#         136
-  C:012CH         LINE#         185
-  C:012FH         LINE#         196
+  C:0003H         LINE#         133
+  C:0005H         LINE#         134
+  C:0006H         LINE#         135
+  C:0007H         LINE#         136
+  C:0009H         LINE#         185
+  C:000CH         LINE#         196
   -------         ENDMOD        ?C_STARTUP
 
   -------         MODULE        MAIN
@@ -155,197 +154,201 @@ SYMBOL TABLE OF MODULE:  .\Objects\MPU6050_51 (?C_STARTUP)
   D:00E8H         PUBLIC        P4
   D:00A8H         PUBLIC        IE
   D:00B8H         PUBLIC        IP
-  C:00D3H         PUBLIC        main
+  C:01E0H         PUBLIC        main
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
   D:00C8H         PUBLIC        T2CON
   D:00D0H         PUBLIC        PSW
   -------         PROC          MAIN
-  C:00D3H         LINE#         7
-  C:00D3H         LINE#         8
-  C:00D3H         LINE#         9
-  C:00DAH         LINE#         11
-  C:00DDH         LINE#         12
-  C:00E4H         LINE#         13
-  C:00E4H         LINE#         14
-  C:00E4H         LINE#         15
-  C:00E9H         LINE#         17
-  C:00F0H         LINE#         18
+  -------         DO            
+  D:001EH         SYMBOL        i
+  -------         ENDDO         
+  C:01E0H         LINE#         7
+  C:01E0H         LINE#         8
+  C:01E0H         LINE#         9
+  C:01E6H         LINE#         10
+  C:01EDH         LINE#         12
+  C:01F0H         LINE#         13
+  C:01F7H         LINE#         14
+  C:01FEH         LINE#         15
+  C:01FEH         LINE#         16
+  C:01FEH         LINE#         18
+  C:0201H         LINE#         19
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 
   -------         MODULE        MPU6050
   C:0000H         SYMBOL        _ICE_DUMMY_
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/19/2021  01:24:21  PAGE 4
+
+
   D:0080H         PUBLIC        P0
   D:0090H         PUBLIC        P1
-  C:013EH         PUBLIC        I2C_RecvACK
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/18/2021  23:37:10  PAGE 4
-
-
+  C:0309H         PUBLIC        I2C_RecvACK
   D:00A0H         PUBLIC        P2
   D:00B0H         PUBLIC        P3
-  C:006FH         PUBLIC        _Single_ReadI2C
+  C:0248H         PUBLIC        _Single_ReadI2C
   D:00E8H         PUBLIC        P4
   D:00A8H         PUBLIC        IE
-  C:014AH         PUBLIC        Delay5us
-  C:00B3H         PUBLIC        _delay
-  C:00F2H         PUBLIC        _Single_WriteI2C
+  C:0320H         PUBLIC        Delay5us
+  C:028CH         PUBLIC        _delay
+  C:02C9H         PUBLIC        _Single_WriteI2C
   D:00B8H         PUBLIC        IP
   B:00D0H.7       PUBLIC        CY
-  C:002AH         PUBLIC        _GetData
-  C:0109H         PUBLIC        I2C_Start
+  C:0203H         PUBLIC        _GetData
+  C:02E0H         PUBLIC        I2C_Start
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
-  D:0008H         PUBLIC        dis_data
-  D:000AH         PUBLIC        dis
-  C:004DH         PUBLIC        _I2C_SendByte
-  C:0132H         PUBLIC        I2C_Stop
-  C:0003H         PUBLIC        I2C_RecvByte
-  C:0091H         PUBLIC        InitMPU6050
+  D:0021H         PUBLIC        dis_data
+  D:0023H         PUBLIC        dis
+  C:0226H         PUBLIC        _I2C_SendByte
+  C:02FDH         PUBLIC        I2C_Stop
+  C:01B9H         PUBLIC        I2C_RecvByte
+  C:026AH         PUBLIC        InitMPU6050
   B:0090H.1       PUBLIC        SDA
   B:0090H.0       PUBLIC        SCL
   D:00C8H         PUBLIC        T2CON
   D:00D0H         PUBLIC        PSW
-  C:0118H         PUBLIC        I2C_SendACK
+  C:02EFH         PUBLIC        I2C_SendACK
   -------         PROC          _DELAY
   D:0006H         SYMBOL        k
   -------         DO            
   D:0004H         SYMBOL        i
   D:0002H         SYMBOL        j
   -------         ENDDO         
-  C:00B3H         LINE#         13
-  C:00B3H         LINE#         14
-  C:00B3H         LINE#         16
-  C:00BDH         LINE#         17
-  C:00BDH         LINE#         18
-  C:00CBH         LINE#         19
-  C:00D2H         LINE#         20
+  C:028CH         LINE#         13
+  C:028CH         LINE#         14
+  C:028CH         LINE#         16
+  C:0296H         LINE#         17
+  C:0296H         LINE#         18
+  C:02A4H         LINE#         19
+  C:02ABH         LINE#         20
   -------         ENDPROC       _DELAY
   -------         PROC          DELAY5US
-  C:014AH         LINE#         48
-  C:014AH         LINE#         49
-  C:014AH         LINE#         50
-  C:014BH         LINE#         51
+  C:0320H         LINE#         48
+  C:0320H         LINE#         49
+  C:0320H         LINE#         50
+  C:0321H         LINE#         51
   -------         ENDPROC       DELAY5US
   -------         PROC          I2C_START
-  C:0109H         LINE#         56
-  C:0109H         LINE#         57
-  C:0109H         LINE#         58
-  C:010BH         LINE#         59
-  C:010DH         LINE#         60
-  C:0110H         LINE#         61
-  C:0112H         LINE#         62
-  C:0115H         LINE#         63
-  C:0117H         LINE#         64
+  C:02E0H         LINE#         56
+  C:02E0H         LINE#         57
+  C:02E0H         LINE#         58
+  C:02E2H         LINE#         59
+  C:02E4H         LINE#         60
+  C:02E7H         LINE#         61
+  C:02E9H         LINE#         62
+  C:02ECH         LINE#         63
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/19/2021  01:24:21  PAGE 5
+
+
+  C:02EEH         LINE#         64
   -------         ENDPROC       I2C_START
   -------         PROC          I2C_STOP
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/18/2021  23:37:10  PAGE 5
-
-
-  C:0132H         LINE#         68
-  C:0132H         LINE#         69
-  C:0132H         LINE#         70
-  C:0134H         LINE#         71
-  C:0136H         LINE#         72
-  C:0139H         LINE#         73
-  C:013BH         LINE#         74
+  C:02FDH         LINE#         68
+  C:02FDH         LINE#         69
+  C:02FDH         LINE#         70
+  C:02FFH         LINE#         71
+  C:0301H         LINE#         72
+  C:0304H         LINE#         73
+  C:0306H         LINE#         74
   -------         ENDPROC       I2C_STOP
   -------         PROC          I2C_SENDACK
   B:0020H.0       SYMBOL        ack
-  C:0118H         LINE#         80
-  C:0118H         LINE#         81
-  C:0118H         LINE#         82
-  C:011CH         LINE#         83
-  C:011EH         LINE#         84
-  C:0121H         LINE#         85
-  C:0123H         LINE#         86
+  C:02EFH         LINE#         80
+  C:02EFH         LINE#         81
+  C:02EFH         LINE#         82
+  C:02F3H         LINE#         83
+  C:02F5H         LINE#         84
+  C:02F8H         LINE#         85
+  C:02FAH         LINE#         86
   -------         ENDPROC       I2C_SENDACK
   -------         PROC          I2C_RECVACK
-  C:013EH         LINE#         91
-  C:013EH         LINE#         92
-  C:013EH         LINE#         93
-  C:0140H         LINE#         94
-  C:0143H         LINE#         95
-  C:0145H         LINE#         96
-  C:0147H         LINE#         97
+  C:0309H         LINE#         91
+  C:0309H         LINE#         92
+  C:0309H         LINE#         93
+  C:030BH         LINE#         94
+  C:030EH         LINE#         95
+  C:0310H         LINE#         96
+  C:0312H         LINE#         97
   -------         ENDPROC       I2C_RECVACK
   -------         PROC          _I2C_SENDBYTE
   D:0007H         SYMBOL        dat
   -------         DO            
   D:0006H         SYMBOL        i
   -------         ENDDO         
-  C:004DH         LINE#         103
-  C:004DH         LINE#         104
-  C:004DH         LINE#         106
-  C:0059H         LINE#         107
-  C:0059H         LINE#         108
-  C:005DH         LINE#         109
-  C:005FH         LINE#         110
-  C:0061H         LINE#         111
-  C:0064H         LINE#         112
-  C:0066H         LINE#         113
-  C:0069H         LINE#         114
-  C:006CH         LINE#         115
+  C:0226H         LINE#         103
+  C:0226H         LINE#         104
+  C:0226H         LINE#         106
+  C:0232H         LINE#         107
+  C:0232H         LINE#         108
+  C:0236H         LINE#         109
+  C:0238H         LINE#         110
+  C:023AH         LINE#         111
+  C:023DH         LINE#         112
+  C:023FH         LINE#         113
+  C:0242H         LINE#         114
+  C:0245H         LINE#         115
   -------         ENDPROC       _I2C_SENDBYTE
   -------         PROC          I2C_RECVBYTE
   -------         DO            
   D:0006H         SYMBOL        i
   D:0007H         SYMBOL        dat
   -------         ENDDO         
-  C:0003H         LINE#         120
-  C:0003H         LINE#         121
-  C:0003H         LINE#         123
-  C:0005H         LINE#         124
-  C:0007H         LINE#         125
-  C:0012H         LINE#         126
-  C:0012H         LINE#         127
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/18/2021  23:37:10  PAGE 6
+  C:01B9H         LINE#         120
+  C:01B9H         LINE#         121
+  C:01B9H         LINE#         123
+  C:01BBH         LINE#         124
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/19/2021  01:24:21  PAGE 6
 
 
-  C:0016H         LINE#         128
-  C:0018H         LINE#         129
-  C:001BH         LINE#         130
-  C:0021H         LINE#         131
-  C:0023H         LINE#         132
-  C:0026H         LINE#         133
-  C:0029H         LINE#         134
-  C:0029H         LINE#         135
+  C:01BDH         LINE#         125
+  C:01C8H         LINE#         126
+  C:01C8H         LINE#         127
+  C:01CCH         LINE#         128
+  C:01CEH         LINE#         129
+  C:01D1H         LINE#         130
+  C:01D7H         LINE#         131
+  C:01D9H         LINE#         132
+  C:01DCH         LINE#         133
+  C:01DFH         LINE#         134
+  C:01DFH         LINE#         135
   -------         ENDPROC       I2C_RECVBYTE
   -------         PROC          _SINGLE_WRITEI2C
   D:0004H         SYMBOL        REG_Address
   D:0005H         SYMBOL        REG_data
-  C:00F2H         LINE#         143
-  C:00F4H         LINE#         144
-  C:00F4H         LINE#         145
-  C:00F7H         LINE#         146
-  C:00FCH         LINE#         147
-  C:0101H         LINE#         148
-  C:0106H         LINE#         149
+  C:02C9H         LINE#         143
+  C:02CBH         LINE#         144
+  C:02CBH         LINE#         145
+  C:02CEH         LINE#         146
+  C:02D3H         LINE#         147
+  C:02D8H         LINE#         148
+  C:02DDH         LINE#         149
   -------         ENDPROC       _SINGLE_WRITEI2C
   -------         PROC          _SINGLE_READI2C
   D:0005H         SYMBOL        REG_Address
   -------         DO            
   D:0007H         SYMBOL        REG_data
   -------         ENDDO         
-  C:006FH         LINE#         154
-  C:0071H         LINE#         155
-  C:0071H         LINE#         157
-  C:0074H         LINE#         158
-  C:0079H         LINE#         159
-  C:007EH         LINE#         160
-  C:0081H         LINE#         161
-  C:0086H         LINE#         162
-  C:0089H         LINE#         163
-  C:008EH         LINE#         164
+  C:0248H         LINE#         154
+  C:024AH         LINE#         155
+  C:024AH         LINE#         157
+  C:024DH         LINE#         158
+  C:0252H         LINE#         159
+  C:0257H         LINE#         160
+  C:025AH         LINE#         161
+  C:025FH         LINE#         162
+  C:0262H         LINE#         163
+  C:0267H         LINE#         164
   -------         ENDPROC       _SINGLE_READI2C
   -------         PROC          INITMPU6050
-  C:0091H         LINE#         170
-  C:0091H         LINE#         171
-  C:0091H         LINE#         172
-  C:0098H         LINE#         173
-  C:009FH         LINE#         174
-  C:00A5H         LINE#         175
-  C:00ACH         LINE#         176
+  C:026AH         LINE#         170
+  C:026AH         LINE#         171
+  C:026AH         LINE#         172
+  C:0271H         LINE#         173
+  C:0278H         LINE#         174
+  C:027EH         LINE#         175
+  C:0285H         LINE#         176
   -------         ENDPROC       INITMPU6050
   -------         PROC          _GETDATA
   D:0004H         SYMBOL        REG_Address
@@ -353,17 +356,99 @@ SYMBOL TABLE OF MODULE:  .\Objects\MPU6050_51 (?C_STARTUP)
   D:0003H         SYMBOL        H
   D:0005H         SYMBOL        L
   -------         ENDDO         
-  C:002AH         LINE#         181
-  C:002CH         LINE#         182
-  C:002CH         LINE#         184
-  C:0031H         LINE#         185
-  C:0039H         LINE#         186
-  C:004CH         LINE#         187
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/18/2021  23:37:10  PAGE 7
+  C:0203H         LINE#         181
+  C:0205H         LINE#         182
+  C:0205H         LINE#         184
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/19/2021  01:24:21  PAGE 7
 
 
+  C:020AH         LINE#         185
+  C:0212H         LINE#         186
+  C:0225H         LINE#         187
   -------         ENDPROC       _GETDATA
   -------         ENDMOD        MPU6050
 
-Program Size: data=15.1 xdata=0 code=332
-LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
+  -------         MODULE        DIGTUBE
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:0008H         SYMBOL        control_code
+  D:00E8H         PUBLIC        P4
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:0315H         SYMBOL        _delay_dig
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  C:011AH         PUBLIC        _DigTube_LoadNum
+  D:0010H         PUBLIC        digtube_buffer
+  D:0014H         SYMBOL        dec_list
+  C:0178H         PUBLIC        DigTube_Display
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _DELAY_DIG
+  D:0006H         SYMBOL        i
+  C:0315H         LINE#         9
+  C:0315H         LINE#         10
+  C:0315H         LINE#         11
+  C:031FH         LINE#         12
+  -------         ENDPROC       _DELAY_DIG
+  -------         PROC          DIGTUBE_DISPLAY
+  -------         DO            
+  D:0005H         SYMBOL        i
+  -------         ENDDO         
+  C:0178H         LINE#         14
+  C:0178H         LINE#         15
+  C:0178H         LINE#         16
+  C:017AH         LINE#         17
+  C:0184H         LINE#         18
+  C:0184H         LINE#         19
+  C:0192H         LINE#         20
+  C:0192H         LINE#         22
+  C:0192H         LINE#         23
+  C:0197H         LINE#         24
+  C:0197H         LINE#         25
+  C:019CH         LINE#         26
+  C:019CH         LINE#         27
+  C:01A1H         LINE#         28
+  C:01A1H         LINE#         29
+  C:01A4H         LINE#         30
+  C:01A4H         LINE#         31
+  C:01ABH         LINE#         32
+  C:01B2H         LINE#         33
+  C:01B5H         LINE#         34
+  C:01B8H         LINE#         35
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/19/2021  01:24:21  PAGE 8
+
+
+  -------         ENDPROC       DIGTUBE_DISPLAY
+  -------         PROC          _DIGTUBE_LOADNUM
+  D:0006H         SYMBOL        num
+  -------         DO            
+  D:0002H         SYMBOL        temp
+  -------         ENDDO         
+  C:011AH         LINE#         37
+  C:011AH         LINE#         38
+  C:011AH         LINE#         39
+  C:011EH         LINE#         40
+  C:0133H         LINE#         41
+  C:014CH         LINE#         42
+  C:0165H         LINE#         43
+  C:0177H         LINE#         45
+  -------         ENDPROC       _DIGTUBE_LOADNUM
+  -------         ENDMOD        DIGTUBE
+
+  -------         MODULE        ?C?SIDIV
+  C:008FH         PUBLIC        ?C?SIDIV
+  -------         ENDMOD        ?C?SIDIV
+
+  -------         MODULE        ?C?UIDIV
+  C:00C5H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GETDATA?MPU6050
+
+Program Size: data=39.1 xdata=0 code=802
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)
