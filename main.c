@@ -1,20 +1,58 @@
 #include <STC89C5xRC.H>
 #include "mpu6050.h"
 #include "digtube.h"
+#include "math.h"
 //*********************************************************
 //主程序
 //*********************************************************
-void main()
+void main(void)
 {
-	unsigned int i = 1234;
-	delay(500);		//上电延时
+	long x = 0;
+	long y = 0;
+	long z = 0 ;
+	long abs = 1 ;
+	
+	long abs_x ;
+	long abs_y ;
 
+	//unsigned int i = 1234;
+	delay(500);		//上电延时
 	InitMPU6050();	//初始化MPU6050
 	delay(150);
-	DigTube_LoadNum(i);
+
+	
+	//DigTube_LoadNum(i);
 	while(1)
 	{
+		x = GetData(ACCEL_XOUT_H) ;
+		y = GetData(ACCEL_YOUT_H) ;
+		z = GetData(ACCEL_ZOUT_H) ;
+		
+		abs = sqrt( x*x + y*y + z*z ) ;
 
+		x = x*100 ;
+		y = y*100 ;
+		z = z*100 ;
+		
+		abs_x = x>=0 ? x : -x ;
+		abs_y = y>=0 ? y : -y ;
+
+		if( (z/abs) > 95 )
+		{
+			DigTube_LoadNum(1);
+		}
+		else if( abs_x>abs_y  )
+		{
+			if(x>0){DigTube_LoadNum(2);}
+			if(x<0){DigTube_LoadNum(3);}
+		}
+		else if(abs_x<abs_y)
+		{
+			if(y>0){DigTube_LoadNum(4);}
+			if(y<0){DigTube_LoadNum(5);}
+		}
+		
 		DigTube_Display();
 	}
+	return ;
 }

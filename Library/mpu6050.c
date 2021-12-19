@@ -47,7 +47,8 @@ void delay(unsigned int k)
 
 void Delay5us()
 {
-	_nop_();
+		_nop_();_nop_();_nop_();_nop_();_nop_();_nop_();
+
 }
 
 //**************************************
