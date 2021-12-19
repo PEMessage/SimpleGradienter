@@ -39,17 +39,17 @@ void main(void)
 
 		if( (z/abs) > 95 )
 		{
-			DigTube_LoadNum(1);
+			DigTube_LoadDirection(0);
 		}
 		else if( abs_x>abs_y  )
 		{
-			if(x>0){DigTube_LoadNum(2);}
-			if(x<0){DigTube_LoadNum(3);}
+			if(x>0){DigTube_LoadDirection(DOWN);}
+			if(x<0){DigTube_LoadDirection(UP  );}
 		}
 		else if(abs_x<abs_y)
 		{
-			if(y>0){DigTube_LoadNum(4);}
-			if(y<0){DigTube_LoadNum(5);}
+			if(y>0){DigTube_LoadDirection(RIGHT);}
+			if(y<0){DigTube_LoadDirection(LEFT );}
 		}
 		
 		DigTube_Display();

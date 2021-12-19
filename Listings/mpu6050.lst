@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   MPU6050                                                           12/19/2021 13:07:20 PAGE 1   
+C51 COMPILER V9.60.0.0   MPU6050                                                           12/19/2021 13:48:32 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MPU6050
@@ -62,7 +62,7 @@ line level    source
   52   1      }
   53          
   54          //**************************************
-C51 COMPILER V9.60.0.0   MPU6050                                                           12/19/2021 13:07:20 PAGE 2   
+C51 COMPILER V9.60.0.0   MPU6050                                                           12/19/2021 13:48:32 PAGE 2   
 
   55          //I2C起始信号
   56          //**************************************
@@ -126,7 +126,7 @@ line level    source
  114   2              Delay5us();             //延时
  115   2          }
  116   1          I2C_RecvACK();
-C51 COMPILER V9.60.0.0   MPU6050                                                           12/19/2021 13:07:20 PAGE 3   
+C51 COMPILER V9.60.0.0   MPU6050                                                           12/19/2021 13:48:32 PAGE 3   
 
  117   1      }
  118          //**************************************
@@ -190,7 +190,7 @@ line level    source
  176   1        Single_WriteI2C(GYRO_CONFIG, 0x18);
  177   1        Single_WriteI2C(ACCEL_CONFIG, 0x01);
  178   1      }
-C51 COMPILER V9.60.0.0   MPU6050                                                           12/19/2021 13:07:20 PAGE 4   
+C51 COMPILER V9.60.0.0   MPU6050                                                           12/19/2021 13:48:32 PAGE 4   
 
  179          //**************************************
  180          //合成数据

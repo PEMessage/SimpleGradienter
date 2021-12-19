@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   MAIN                                                              12/19/2021 13:19:58 PAGE 1   
+C51 COMPILER V9.60.0.0   MAIN                                                              12/19/2021 13:51:52 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
@@ -49,20 +49,20 @@ line level    source
   39   2      
   40   2          if( (z/abs) > 95 )
   41   2          {
-  42   3            DigTube_LoadNum(1);
+  42   3            DigTube_LoadDirection(0);
   43   3          }
   44   2          else if( abs_x>abs_y  )
   45   2          {
-  46   3            if(x>0){DigTube_LoadNum(2);}
-  47   3            if(x<0){DigTube_LoadNum(3);}
+  46   3            if(x>0){DigTube_LoadDirection(DOWN);}
+  47   3            if(x<0){DigTube_LoadDirection(UP  );}
   48   3          }
   49   2          else if(abs_x<abs_y)
   50   2          {
-  51   3            if(y>0){DigTube_LoadNum(4);}
-  52   3            if(y<0){DigTube_LoadNum(5);}
+  51   3            if(y>0){DigTube_LoadDirection(RIGHT);}
+  52   3            if(y<0){DigTube_LoadDirection(LEFT );}
   53   3          }
   54   2          
-C51 COMPILER V9.60.0.0   MAIN                                                              12/19/2021 13:19:58 PAGE 2   
+C51 COMPILER V9.60.0.0   MAIN                                                              12/19/2021 13:51:52 PAGE 2   
 
   55   2          DigTube_Display();
   56   2        }
@@ -71,7 +71,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    664    ----
+   CODE SIZE        =    654    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
